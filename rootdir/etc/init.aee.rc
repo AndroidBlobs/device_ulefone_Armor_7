@@ -1,0 +1,20 @@
+on post-fs-data
+    mkdir /data/vendor/mtklog 0777 root root
+    mkdir /data/vendor/mtklog/aee_exp 0775 root root
+    mkdir /data/vendor/dumpsys 0775 system system
+    mkdir /data/vendor/core 0775 system system
+    mkdir /data/vendor/tombstones 0775 system system
+
+on post-fs
+    start aee_aedv
+    start aee_aedv64
+
+    
+on init
+    setprop ro.vendor.aee.enforcing no
+    setprop persist.vendor.aeev.core.dump enable
+    setprop persist.vendor.aeev.core.direct enable
+    setprop persist.vendor.mtk.aee.mode 3
+    setprop persist.vendor.mtk.aeev.mode 3
+    setprop persist.vendor.mtk.aee.filter 0
+    setprop persist.vendor.anr.dumpthr 1
